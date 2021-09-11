@@ -11,12 +11,12 @@ class MongoId extends Constraint
     /**
      * @var string
      */
-    public $invalidMongoIdMessage = 'Invalid Mongo Id: "{{ value }}"';
+    public string $message = 'Invalid Mongo Id: "{{ value }}"';
 
     /**
      * @return string
      */
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return static::class."Validator";
     }

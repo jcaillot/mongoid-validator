@@ -12,9 +12,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-
 class MongoIdValidator extends ConstraintValidator
 {
+
+    /**
+     * @param mixed $value The value that should be validated
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof MongoId) {
@@ -30,7 +33,7 @@ class MongoIdValidator extends ConstraintValidator
             /* @var InvalidArgumentException $exception */
         } catch (Throwable $exception) {
             $this->context
-                ->buildViolation($constraint->invalidMongoIdMessage)
+                ->buildViolation($constraint->message)
                 ->setParameter("{{ value }}", $value)
                 ->addViolation();
         }

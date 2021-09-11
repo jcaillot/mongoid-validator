@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Chaman\Validator;
 
-use MongoDB\BSON\ObjectId;
-
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
-use Symfony\Component\Translation\DataCollectorTranslator;
 
 use Chaman\Validator\Constraints\MongoId;
 use Chaman\Validator\Constraints\MongoIdValidator;
@@ -34,6 +31,7 @@ class MongoIdValidatorTest extends ConstraintValidatorTestCase
 
         $this->assertNull($violations);
 
+
         $obIds = [
             "612e33894726a713fd310aed",
             "612e33884726a713fd31009b",
@@ -51,18 +49,18 @@ class MongoIdValidatorTest extends ConstraintValidatorTestCase
         $this->expectNoValidate();
 
         $constraint = new MongoId();
-        $this->validator->validate("foobar", $constraint);
+        $invalidValue = 'foobar';
+        $this->validator->validate($invalidValue, $constraint);
 
-        $this->buildViolation($constraint->invalidMongoIdMessage)
-            ->setParameter("{{ value }}", "foobar")
+        $this->buildViolation($constraint->message)
+            ->setParameter("{{ value }}", $invalidValue)
             ->assertRaised();
     }
-
 
     /**
      * @return MongoIdValidator
      */
-    protected function createValidator()
+    protected function createValidator(): MongoIdValidator
     {
         return new MongoIdValidator();
     }

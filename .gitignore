@@ -1,9 +1,9 @@
 
 .phpunit.result.cache
-
 composer.lock
 symfony.lock
-
-
-/vendor
-
+.php_cs.cache
+.php_cs
+vendor/
+.idea/*
+Icon[^M]

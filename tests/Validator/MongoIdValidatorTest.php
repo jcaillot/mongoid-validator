@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Chaman\Validator;
 
 use MongoDB\BSON\ObjectId;
@@ -10,7 +12,9 @@ use Symfony\Component\Translation\DataCollectorTranslator;
 use Chaman\Validator\Constraints\MongoId;
 use Chaman\Validator\Constraints\MongoIdValidator;
 
-// php bin/phpunit tests/Validator/MongoIdValidatorTest
+// php vendor/bin/phpunit tests/Validator/MongoIdValidatorTest.php
+// php vendor/bin/phpunit tests
+
 class MongoIdValidatorTest extends ConstraintValidatorTestCase
 {
     public function testNullIsValid()
@@ -31,10 +35,10 @@ class MongoIdValidatorTest extends ConstraintValidatorTestCase
         $this->assertNull($violations);
 
         $obIds = [
-      "612e33894726a713fd310aed",
-      "612e33884726a713fd31009b",
-      "612e33874726a713fd310028",
-    ];
+            "612e33894726a713fd310aed",
+            "612e33884726a713fd31009b",
+            "612e33874726a713fd310028",
+        ];
 
         foreach ($obIds as $obId) {
             $this->validator->validate($obId, new MongoId());
@@ -50,21 +54,16 @@ class MongoIdValidatorTest extends ConstraintValidatorTestCase
         $this->validator->validate("foobar", $constraint);
 
         $this->buildViolation($constraint->invalidMongoIdMessage)
-      ->setParameter("{{ value }}", "foobar")
-      ->assertRaised();
+            ->setParameter("{{ value }}", "foobar")
+            ->assertRaised();
     }
 
+
     /**
-     * @return DescriptionComesWithHeadingValidator
+     * @return MongoIdValidator
      */
     protected function createValidator()
     {
-        $translator = $this->createMock(DataCollectorTranslator::class);
-        $translator
-      ->expects($this->any())
-      ->method("getLocale")
-      ->will($this->returnValue("fr"));
-
-        return new MongoIdValidator($translator);
+        return new MongoIdValidator();
     }
 }

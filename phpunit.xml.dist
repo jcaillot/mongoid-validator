@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="vendor/autoload.php"
+         colors="true" verbose="true">
+  <coverage>
+    <include>
+      <directory>src</directory>
+    </include>
+  </coverage>
+  <php>
+    <ini name="display_errors" value="On"/>
+    <ini name="display_startup_errors" value="On"/>
+    <!-- <ini name="error_reporting" value="-1"/> -->
+    <ini name="error_reporting" value="32767"/>
+  </php>
+  <testsuite name="all">
+    <directory>tests</directory>
+  </testsuite>
+  <groups>
+    <exclude>
+      <group>vendor</group>
+    </exclude>
+  </groups>
+</phpunit>

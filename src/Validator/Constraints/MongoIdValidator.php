@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Chaman\Validator\Constraints;
 
+use Throwable;
 use MongoDB\BSON\ObjectId;
-
-use MongoDB\BSONObjectId;
 use MongoDB\Driver\Exception\InvalidArgumentException;
+
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Throwable;
+
 
 class MongoIdValidator extends ConstraintValidator
 {
@@ -26,9 +26,8 @@ class MongoIdValidator extends ConstraintValidator
         }
 
         try {
-            /** @var BSONObjectId */
             new ObjectId($value);
-            /* @var InvalidArgumentException */
+            /* @var InvalidArgumentException $exception */
         } catch (Throwable $exception) {
             $this->context
                 ->buildViolation($constraint->invalidMongoIdMessage)

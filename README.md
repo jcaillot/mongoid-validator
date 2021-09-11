@@ -1,4 +1,4 @@
-# chaman/mongoid
+# jcaillot/mongoid
 
 ### MongoId Symfony Validator
 
@@ -6,7 +6,7 @@
 
 ## requirements
 
-- Symfony
+- Symfony >=4
 
 - PHP MongoDB PHP Driver
 
@@ -15,7 +15,7 @@
 ## Installation
 
 ```shell
-$composer require chaman/mongoid
+$composer require jcaillot/mongoid
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ use Chaman\Validator\Constraints\MongoId;
 ...
 $validator = Validation::createValidator();
 $constraint = new MongoId();
-$id = '12345678910';
+$id = '612e33884726a713fd31009b';
 
 
 $violations = $validator->validate($id, $constraint);

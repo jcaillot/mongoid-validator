@@ -1,5 +1,5 @@
 {
-  "name": "chaman/mongoid",
+  "name": "jcaillot/mongoid-validator",
   "type": "library",
   "description": "Symfony validator for mongoid string",
   "keywords": [

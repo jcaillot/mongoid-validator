@@ -14,20 +14,6 @@
 
 ## Installation
 
-1 - Add the github repository to your composer.json:
-
-    ...
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jcaillot/mongoid-validator.git"
-        }
-     ],
-
-2 - Use composer require:
-
 ```shell
 $composer require jcaillot/mongoid-validator
 ```
